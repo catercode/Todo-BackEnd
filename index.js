@@ -5,8 +5,8 @@ import myTodoModel from './models/todo_schema.js';
 
 dotenv.config();
 const app = express();
-const port = process.env.port || 5000;
-const DB = process.env.DB_URL;
+const port = process.env.PORT || 1000;
+const DB = process.env.DB_URL_DB;
 app.use(express.json());
 
 //this is our first home route
@@ -110,13 +110,14 @@ app.delete('/todo/:id', async (req, res) => {
     }
 })
 
-try {
-    mongoose.connect(DB)
-    console.log('Connection successfull')
-} catch (error) {
-    console.log('Connection Failed' + error)
-}
-
+mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    console.log("connect to mongodb")
+}).catch((err) => {
+    console.log(err);
+})
 
 app.listen(port, function () {
     console.log('App is listening to port ' + port);
