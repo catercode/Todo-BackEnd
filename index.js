@@ -120,5 +120,5 @@ mongoose.connect(DB, {
 })
 
 app.listen(port, function () {
-    console.log('App is listening to port ' + port);
+    console.log('App is listening to port ');
 });
