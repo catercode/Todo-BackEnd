@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import myTodoModel from './models/todo_schema.js';
 
 dotenv.config();
