@@ -8,6 +8,7 @@ const app = express();
 const port = process.env.PORT || 1000;
 const DB = process.env.DB_URL_DB;
 app.use(express.json());
+app.use(cors());
 
 //this is our first home route
 app.get('/todo', async (req, res) => {
