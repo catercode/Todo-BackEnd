@@ -19,12 +19,18 @@ app.get('/todo', async (req, res) => {
     try {
         const getAllTodo = await myTodoModel.find({})
         if (getAllTodo) {
-            res.send(getAllTodo)
+            res.json(getAllTodo)
+            // return res.status(200).json(
+            //     res.json(getAllTodo)
+            // )
         } else {
-            res.send(getAllTodo)
+            // return res.status(404).json({
+            //     data: getAllTodo
+            // })
+            res.json(getAllTodo)
         }
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
 
 })
@@ -33,15 +39,19 @@ app.get('/todo/:completed', async (req, res) => {
         const { completed } = req.params
         const updateTodo = await myTodoModel.find({}).where('completed').equals(completed)
         if (updateTodo) {
-            res.send(updateTodo)
+            return res.status(200).json({
+                data: updateTodo
+            })
         } else {
-            res.send(updateTodo)
+            return res.status(404).json({
+                data: updateTodo
+            })
         }
 
     } catch (error) {
         console.log(error)
     }
-    
+
 })
 
 //this is our todo route
@@ -55,44 +65,55 @@ app.post('/todo', async (req, res) => {
             completed
         })
         if (addNewTodo) {
-            res.send(addNewTodo)
+            return res.status(200).json({
+                data: addNewTodo
+            })
         } else {
-            res.send(addNewTodo)
+            return res.status(404).json({
+                data: addNewTodo
+            })
         }
     } catch (error) {
         console.log(error)
     }
-   
+
 
 })
 
 //this is my update route
 app.put('/todo/:id', async (req, res) => {
-   try {
-       const updateTodo = await myTodoModel.findByIdAndUpdate(req.params.id, req.body)
-       if (updateTodo) {
-           res.send(updateTodo)
-       } else {
-           res.send(updateTodo)
-
-       }
-   } catch (error) {
-       console.log(error)
-   }
+    try {
+        const updateTodo = await myTodoModel.findByIdAndUpdate(req.params.id, req.body)
+        if (updateTodo) {
+            return res.status(200).json({
+                data: updateTodo
+            })
+        } else {
+            return res.status(404).json({
+                data: updateTodo
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
 
 })
 //this is my delete route
 app.delete('/todo/:id', async (req, res) => {
-   try {
-       const deleteTodo = await myTodoModel.findByIdAndDelete(req.params.id)
-       if (deleteTodo) {
-           res.send(deleteTodo)
-       } else {
-           res.send(deleteTodo)
-       }
-   } catch (error) {
-       console.log(error)
-   }
+    try {
+        const deleteTodo = await myTodoModel.findByIdAndDelete(req.params.id)
+        if (deleteTodo) {
+            return res.status(200).json({
+                data: deleteTodo
+            })
+        } else {
+            return res.status(404).json({
+                data: deleteTodo
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 mongoose.connect(DB, {
