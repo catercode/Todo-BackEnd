@@ -19,17 +19,10 @@ app.get('/todo', async (req, res) => {
     try {
         const getAllTodo = await myTodoModel.find({})
         if (getAllTodo) {
-            // res.json(getAllTodo)
-            return res.status(200).json({
-                data: getAllTodo
-            }
+            res.json(getAllTodo)
 
-            )
         } else {
-            return res.status(404).json({
-                data: getAllTodo
-            })
-            // res.json(getAllTodo)
+            res.json(getAllTodo)
         }
     } catch (error) {
         console.log(error)
@@ -41,13 +34,9 @@ app.get('/todo/:completed', async (req, res) => {
         const { completed } = req.params
         const updateTodo = await myTodoModel.find({}).where('completed').equals(completed)
         if (updateTodo) {
-            return res.status(200).json({
-                data: updateTodo
-            })
+            res.json(updateTodo)
         } else {
-            return res.status(404).json({
-                data: updateTodo
-            })
+            res.json(updateTodo)
         }
 
     } catch (error) {
@@ -67,13 +56,9 @@ app.post('/todo', async (req, res) => {
             completed
         })
         if (addNewTodo) {
-            return res.status(200).json({
-                data: addNewTodo
-            })
+            res.json(addNewTodo)
         } else {
-            return res.status(404).json({
-                data: addNewTodo
-            })
+            res.json(addNewTodo)
         }
     } catch (error) {
         console.log(error)
@@ -87,13 +72,9 @@ app.put('/todo/:id', async (req, res) => {
     try {
         const updateTodo = await myTodoModel.findByIdAndUpdate(req.params.id, req.body)
         if (updateTodo) {
-            return res.status(200).json({
-                data: updateTodo
-            })
+            res.json(updateTodo)
         } else {
-            return res.status(404).json({
-                data: updateTodo
-            })
+            res.json(updateTodo)
         }
     } catch (error) {
         console.log(error)
@@ -105,13 +86,9 @@ app.delete('/todo/:id', async (req, res) => {
     try {
         const deleteTodo = await myTodoModel.findByIdAndDelete(req.params.id)
         if (deleteTodo) {
-            return res.status(200).json({
-                data: deleteTodo
-            })
+            res.json(deleteTodo)
         } else {
-            return res.status(404).json({
-                data: deleteTodo
-            })
+            res.json(deleteTodo)
         }
     } catch (error) {
         console.log(error)
