@@ -19,15 +19,17 @@ app.get('/todo', async (req, res) => {
     try {
         const getAllTodo = await myTodoModel.find({})
         if (getAllTodo) {
-            res.json(getAllTodo)
-            // return res.status(200).json(
-            //     res.json(getAllTodo)
-            // )
+            // res.json(getAllTodo)
+            return res.status(200).json({
+                data: getAllTodo
+            }
+
+            )
         } else {
-            // return res.status(404).json({
-            //     data: getAllTodo
-            // })
-            res.json(getAllTodo)
+            return res.status(404).json({
+                data: getAllTodo
+            })
+            // res.json(getAllTodo)
         }
     } catch (error) {
         console.log(error)
