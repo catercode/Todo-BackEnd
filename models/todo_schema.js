@@ -5,7 +5,7 @@ const todoSchema = Schema({
     title: String,
     description: String,
     dateTime: String,
-    completed: String,
+    completed: Boolean,
 
 });
 
