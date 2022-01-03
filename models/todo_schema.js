@@ -2,10 +2,22 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const todoSchema = Schema({
-    title: String,
-    description: String,
-    dateTime: String,
-    completed: Boolean,
+    title: {
+        Type: String,
+        require: true
+    },
+    description: {
+        Type: String,
+        require: true
+    },
+    dateTime: {
+        Type: String,
+        require: true
+    },
+    completed: {
+        Type: Boolean,
+        default: true
+    }
 
 });
 
